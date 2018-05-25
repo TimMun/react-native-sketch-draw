@@ -97,6 +97,7 @@ SketchView.propTypes = {
   ...View.propTypes,
   selectedTool: PropTypes.number,
   toolColor: ColorPropType,
+  toolThickness: PropTypes.number,
   localSourceImagePath: PropTypes.string
 };
 

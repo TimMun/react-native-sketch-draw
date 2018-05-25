@@ -49,6 +49,12 @@
     [(PenSketchTool *)penTool setToolColor:rgba];
 }
 
+-(void)setToolThickness:(CGFloat)thickness
+{
+    [(PenSketchTool *)penTool setToolThickness:thickness];
+    [(EraserSketchTool *)eraseTool setToolThickness:thickness];
+}
+
 -(void)setViewImage:(UIImage *)image
 {
     incrementalImage = image;
