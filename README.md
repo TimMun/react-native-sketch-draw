@@ -56,7 +56,8 @@ export default class DrawBoard extends Component {
         super(props);
         this.state = {
             color: '#FFFFFF',
-            toolSelected: SketchDrawConstants.toolType.pen.id
+            toolSelected: SketchDrawConstants.toolType.pen.id,
+            currentStroke: 8
         };
     }
 
