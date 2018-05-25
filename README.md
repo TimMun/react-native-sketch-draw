@@ -10,7 +10,7 @@ This component was written to fulfill the following use cases:
 2. Shouldn't include any UI Elements for interaction. The UI Elements can be created and customized in react native.
 3. Support touch drawing, erasing of part of drawing, clearing drawing, saving of drawn images locally and opening of locally saved images.
 
-You can change color with prop `toolColor={'#color-CSS-Hexa'}`.
+You can change color with prop `toolColor={'#color-CSS-Hexa'}`. Change thickness (stroke width) with `toolThickness=5`.
 
 ![Imgur](https://i.imgur.com/K2tCYNR.png)
 ## Getting Started
@@ -68,6 +68,14 @@ export default class DrawBoard extends Component {
         this.setState({toolSelected: tools[this.state.toolSelected].nextId});
     }
 
+    changeStroke() {
+        let newStroke = this.state.currentStroke + 1
+        if (newStroke > 8) {
+            newStroke = 1
+        }
+        this.setState({ currentStroke: newStroke })
+    }
+
     getToolName() {
         return tools[this.state.toolSelected].name;
     }
@@ -93,8 +101,10 @@ export default class DrawBoard extends Component {
                         <Text style={{color:'#888',fontWeight:'600'}}>SAVE</Text>
                     </TouchableHighlight>
                     <TouchableHighlight underlayColor={"#CCC"} style={{ flex: 1, justifyContent:'center', alignItems: 'center', backgroundColor:this.isEraserToolSelected() ? "#CCC" : "rgba(0,0,0,0)" }} onPress={this.toolChangeClick.bind(this)}>
-
-                    <Text style={{color:'#888',fontWeight:'600'}}>ERASER</Text>
+                        <Text style={{color:'#888',fontWeight:'600'}}>ERASER</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight underlayColor={"#CCC"} style={{ flex: 1, alignItems: 'center', borderLeftWidth: 1, paddingVertical: 20, borderColor: '#DDD' }} onPress={this.changeStroke.bind(this)}>
+                        <Text style={{ color: '#888', fontWeight: '600' }}>STROKE: {this.state.currentStroke}</Text>
                     </TouchableHighlight>
                 </View>
             </View>
@@ -121,8 +131,9 @@ export default class DrawBoard extends Component {
 
 1. `selectedTool` - Set the tool id to be selected.
 2. `toolColor` - Set color for pen, using CSS colors.
-3. `localSourceImagePath` - Local file path of the image.
-4. `onSaveSketch(saveArgs)` - Callback when saving is complete.
+3. `toolThickness` - Set the thickness (for both tools).
+4. `localSourceImagePath` - Local file path of the image.
+5. `onSaveSketch(saveArgs)` - Callback when saving is complete.
     * `saveArgs` Is an object having the following properties -
         * `localFilePath` - Local file path of the saved image.
         * `imageWidth` - Width of the saved image.
