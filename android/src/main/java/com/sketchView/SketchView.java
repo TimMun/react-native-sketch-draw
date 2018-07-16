@@ -53,7 +53,7 @@ public class SketchView extends View {
 
     public void setToolThickness(float toolThickness) {
         ((PenSketchTool) penTool).setToolThickness(toolThickness);
-        ((EraseSketchTool) reaseTool).setToolThickness(toolThickness);
+        ((EraseSketchTool) eraseTool).setToolThickness(toolThickness);
     }
 
     public void setViewImage(Bitmap bitmap) {
