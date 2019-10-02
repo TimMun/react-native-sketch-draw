@@ -1,8 +1,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { 
-  requireNativeComponent, 
+import {
+  requireNativeComponent,
   View,
   UIManager,
   findNodeHandle,
@@ -73,7 +73,7 @@ class SketchView extends Component {
   changeTool(toolId) {
     UIManager.dispatchViewManagerCommand(
       findNodeHandle(this),
-      UIManager.getViewManagerConfig('RNSketchView').Commands.changeTool,
+      UIManager.getViewManagerConfig('RNSketchView').changeTool,
       [toolId],
     );
   }
